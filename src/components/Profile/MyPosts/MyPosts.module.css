@@ -1,0 +1,18 @@
+.postsBlock {
+    padding: 10px;
+}
+
+.posts {
+    margin-top: 10px;
+}
+
+.messageBtn {
+    margin-top: 5px;
+    width: 100px;
+    height: 30px;
+    background-color: #54667D;
+    color: #ffffff;
+    border: 2px solid #54667D;
+    border-radius: 6px;
+
+}

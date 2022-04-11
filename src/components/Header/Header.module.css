@@ -1,0 +1,11 @@
+.header {
+  grid-area: h;
+  background-color: #34465D;
+  }
+  .logo{
+    width: 50px;
+    display: inline-block;
+    vertical-align: inherit;
+    z-index: 10;
+  }
+  

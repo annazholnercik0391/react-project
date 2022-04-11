@@ -1,38 +1,42 @@
 import React from "react";
+import DialogItem from "./DialogItem/DialogItem";
 import s from "./Dialogs.module.css"
-import {NavLink} from "react-router-dom";
+import Message from "./Message/Message";
 
-const DialogItem = (props) => {
-  return (
-      <div className={`${s.dialog} + '' + ${s.active}`}>
-        <NavLink to={"/dialogs/" + props.id}>{props.name}</NavLink>
-      </div>
-  )
-}
-const Message = (props) => {
-  return (
-      <div className={s.message}>
-        {props.message}
-      </div>
-  )
-}
+
 const Dialogs = (props) => {
+
+  let state = props.dialogsPage
+  let newMessageBody = state.newMessageBody
+  let dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id} />)
+  let messagesElements = state.messages.map(m => <Message message={m.message} key={m.id} />)
+
+  let onSendMessageClick = () => {
+    props.sendMessage()
+  }
+
+  let onNewMessageChange = (e) => {
+    let body = e.target.value;
+    props.updateNewMessageBody(body)
+  }
+
   return (
-      <div className={s.dialogs}>
-        <div className={s.dialogItems}>
-          <DialogItem name="Renata" id="1"/>
-          <DialogItem name="Sasha" id="2"/>
-          <DialogItem name="Sveta" id="3"/>
-          <DialogItem name="Renata" id="4"/>
-          <DialogItem name="Anna" id="5"/>
-          <DialogItem name="Ilya" id="6"/>
-        </div>
-        <div className={s.messages}>
-          <Message message={"Hi! how are you?"}/>
-          <Message message={"I'm great! Thanks! And you?"}/>
-          <Message message={"Me to! What the weather today?"}/>
-        </div>
+    <div className={s.dialogs}>
+      <div className={s.dialogItems}>
+        {dialogsElements}
       </div>
+      <div className={s.messages}>
+        {messagesElements}
+      </div>
+      <div>
+        <textarea className={s.messageEnter} value={newMessageBody}
+          onChange={onNewMessageChange}
+          placeholder='Enter your message' />
+      </div>
+      <div>
+        <button className={s.messageBtn} onClick={onSendMessageClick}>Send</button>
+      </div>
+    </div>
   )
 }
 export default Dialogs

@@ -1,0 +1,45 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogItems {
+    padding: 10px;
+}
+
+.dialog {
+    text-decoration: none;
+    color: #54667D;
+}
+
+.dialog:hover,
+.active {
+    text-decoration: none;
+    color: #FA6342;
+}
+
+.messages {
+    padding: 5px;
+}
+
+.message {
+    color: #54667D;
+}
+
+.messageEnter {
+    margin-left: 10px;
+    width: 250px;
+    height: 18px;
+    color: #54667D;
+}
+
+.messageBtn {
+    margin-left: 10px;
+    width: 100px;
+    height: 30px;
+    background-color: #54667D;
+    color: #ffffff;
+    border: 2px solid #54667D;
+    border-radius: 6px;
+
+}
