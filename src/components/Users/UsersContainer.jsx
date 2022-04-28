@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { subscribeAC, setUsersAC, unsubscribeAC, setCurrentPageAC, setUsersTotalCountAC, toggleIsFetchingAC } from "../redux/usersReducer";
+import { subscribe, setUsers, unsubscribe, setCurrentPage, setTotalUsersCount, toggleIsFetching } from "../redux/usersReducer";
 import * as axios from "axios";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
@@ -50,27 +50,8 @@ let mapStateToProps = (state) => {
     isFetching: state.usersPage.isFetching
   }
 }
-let mapDispatchToProps = (dispatch) => {
-  return {
-    subscribe: (userId) => {
-      dispatch(subscribeAC(userId))
-    },
-    unsubscribe: (userId) => {
-      dispatch(unsubscribeAC(userId))
-    },
-    setUsers: (userId) => {
-      dispatch(setUsersAC(userId))
-    },
-    setCurrentPage: (pageNumber) => {
-      dispatch(setCurrentPageAC(pageNumber))
-    },
-    setTotalUsersCount: (totalCount) => {
-      dispatch(setUsersTotalCountAC(totalCount))
-    },
-    toggleIsFetching: (isFetching) => {
-      dispatch(toggleIsFetchingAC(isFetching))
-    }
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+
+export default connect(mapStateToProps, {
+  subscribe, unsubscribe, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching
+})(UsersContainer)
