@@ -5,15 +5,7 @@
 }
 
 .item {
-    color: #54667D;
-    text-decoration: none;
     margin-bottom: 15px;
-}
-
-.item:hover,
-.active {
-    color: #FA6342;
-    text-decoration: none;
 }
 
 .sidebar {
