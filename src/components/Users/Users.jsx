@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./Users.module.css";
 import UserPhoto from '../../assets/images/user.png'
+import * as axios from 'axios'
 import { NavLink } from "react-router-dom";
 
 
@@ -11,6 +12,7 @@ const Users = (props) => {
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i)
   }
+
   return < div >
     <div>
       {pages.map(p => {
@@ -30,10 +32,35 @@ const Users = (props) => {
           <div>
             {u.subscribed ?
               <button onClick={() => {
-                props.unsubscribe(u.id)
+                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
+                  {
+                    withCredentials: true,
+                    headers: {
+                      "API-KEY": "f14a6b5c-4eb8-4fff-80ba-677ba0802854"
+                    }
+                  })
+                  .then(response => {
+                    if (response.data.resultCode === 0) {
+                      props.unsubscribe(u.id)
+                    }
+                  })
+
               }}>Unsubscribe </button> :
               <button onClick={() => {
-                props.subscribe(u.id)
+                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {},
+                  {
+                    withCredentials: true,
+                    headers: {
+                      "API-KEY": "ff14a6b5c-4eb8-4fff-80ba-677ba0802854"
+                    }
+                  })
+                  .then(response => {
+                    if (response.data.resultCode === 0) {
+                      props.subscribe(u.id)
+                    }
+                  })
+
+
               }}>Subscribe </button>}
 
           </div>
@@ -48,7 +75,7 @@ const Users = (props) => {
             {/* <div>{u.location.city}</div> */}
           </span>
         </span>
-      </div>)
+      </div >)
     }
   </div >
 }
