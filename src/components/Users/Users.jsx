@@ -59,10 +59,7 @@ const Users = (props) => {
                       props.subscribe(u.id)
                     }
                   })
-
-
               }}>Subscribe </button>}
-
           </div>
         </span>
         <span>
