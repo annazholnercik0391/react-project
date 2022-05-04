@@ -40,7 +40,7 @@ const Users = (props) => {
                     }
                   })
                   .then(response => {
-                    if (response.data.resultCode === 0) {
+                    if (response.data.resultCode == 0) {
                       props.unsubscribe(u.id)
                     }
                   })
@@ -51,11 +51,11 @@ const Users = (props) => {
                   {
                     withCredentials: true,
                     headers: {
-                      "API-KEY": "ff14a6b5c-4eb8-4fff-80ba-677ba0802854"
+                      "API-KEY": "f14a6b5c-4eb8-4fff-80ba-677ba0802854"
                     }
                   })
                   .then(response => {
-                    if (response.data.resultCode === 0) {
+                    if (response.data.resultCode == 0) {
                       props.subscribe(u.id)
                     }
                   })
