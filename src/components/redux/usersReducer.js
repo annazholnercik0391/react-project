@@ -1,3 +1,4 @@
+import { usersAPI } from "../../api/api";
 const SUBSCRIBE = 'SUBSCRIBE'
 const UNSUBSCRIBE = 'UNSUBSCRIBE'
 const SET_USERS = 'SET_USERS'
@@ -61,12 +62,50 @@ const usersReducer = (state = initialState, action) => {
       return state
   }
 }
-export const subscribe = (userId) => ({ type: SUBSCRIBE, userId })
-export const unsubscribe = (userId) => ({ type: UNSUBSCRIBE, userId })
+export const subscribeSuccess = (userId) => ({ type: SUBSCRIBE, userId })
+export const unsubscribeSuccess = (userId) => ({ type: UNSUBSCRIBE, userId })
 export const setUsers = (users) => ({ type: SET_USERS, users })
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
 export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, count: totalUsersCount })
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
 export const toggleFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId })
 
+export const getUsers = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(toggleIsFetching(true))
+
+    usersAPI.getUsers(currentPage, pageSize).then(data => {
+      dispatch(toggleIsFetching(false))
+      dispatch(setUsers(data.items))
+      dispatch(setTotalUsersCount(data.totalCount))
+    })
+  }
+}
+
+export const subscribe = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleFollowingProgress(true, userId))
+    usersAPI.subscribe(userId)
+      .then(response => {
+        if (response.data.resultCode === 0) {
+          dispatch(subscribeSuccess(userId))
+        }
+        dispatch(toggleFollowingProgress(false, userId))
+      })
+  }
+}
+
+export const unsubscribe = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleFollowingProgress(true, userId))
+    usersAPI.unsubscribe(userId)
+      .then(response => {
+        if (response.data.resultCode === 0) {
+          dispatch(unsubscribeSuccess(userId))
+        }
+        dispatch(toggleFollowingProgress(false, userId))
+      })
+
+  }
+}
 export default usersReducer

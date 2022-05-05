@@ -16,10 +16,13 @@ export const usersAPI = {
         return response.data;
       });
   },
-  // subscribe(users) {
-  //   return instance.post(`follow/${users.id}`)
-  //     .then(response => {
-  //       return response.data
-  //     })
-  // },
+  subscribe(userId) {
+    return instance.post(`follow/${userId}`)
+  },
+  unsubscribe(userId) {
+    return instance.delete(`follow/${userId}`)
+  },
+  // authMe() {
+  //   return instance.get(`auth/me`)
+  // }
 }
