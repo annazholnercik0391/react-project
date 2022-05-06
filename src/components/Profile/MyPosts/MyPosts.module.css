@@ -1,9 +1,26 @@
 .postsBlock {
     padding: 10px;
+    color: #54667D;
 }
 
 .posts {
     margin-top: 10px;
+}
+
+.postsTitle {
+    font-size: 1.8rem;
+}
+
+.postsEnter {
+    width: 70%;
+    height: 110px;
+    padding: 12px 20px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    color: #54667D;
+    font-size: 1.1rem;
+    resize: none;
 }
 
 .messageBtn {
