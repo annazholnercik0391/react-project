@@ -13,10 +13,11 @@ const ProfileInfo = (props) => {
       {/* <div>
         <img src='https://www.imgacademy.com/themes/custom/imgacademy/images/helpbox-contact.jpg' alt="main_picture" />
       </div> */}
-      <ProfileStatus status='Hello my friends' />
+
       <div className={s.descriptionBlock}>
         <img src={props.profile.photos.large != null ? props.profile.photos.large : noPhoto} alt="#"></img>
         <div >
+          <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
           <h3 className={s.profileName}>{props.profile.fullName}</h3>
           <p className={s.profileDescription}>Looking for a job: {props.profile.lookingForAJobDescription}<br />
             Contacts:<br />
