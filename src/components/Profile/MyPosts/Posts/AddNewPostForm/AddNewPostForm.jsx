@@ -5,7 +5,7 @@ import { maxLengthCreator, required } from "../../../../../utils/validators/vali
 import { Textarea } from "../../../../common/FormControls/FormControls";
 import styles from '../../MyPosts.module.css'
 
-const maxLengthCreator10 = maxLengthCreator(10)
+const maxLengthCreator30 = maxLengthCreator(30)
 
 const AddNewPostForm = (props) => {
   return (
@@ -13,8 +13,8 @@ const AddNewPostForm = (props) => {
       <div>
         <Field component={Textarea} className={styles.postsEnter}
           placeholder={'Enter your message'}
-          name={'newPostText'}
-          validate={[required, maxLengthCreator10]} />
+          name='newPostText'
+          validate={[required, maxLengthCreator30]} />
       </div>
       <div>
         <button className={styles.messageBtn} >Add Post</button>
